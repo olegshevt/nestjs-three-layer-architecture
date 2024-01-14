@@ -7,6 +7,8 @@ import {
   Patch,
   Post,
   Query,
+  RequestTimeoutException,
+  UseInterceptors,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -14,7 +16,9 @@ import { UpdateProductDto } from './dto/update-product.dto';
 import { PaginationQueryDto } from '../common/dto/pagination-query.dto';
 import { Public } from '../common/decorators/public.decorator';
 import { ApiForbiddenResponse, ApiTags } from '@nestjs/swagger';
+import { CircuitBreakerInterceptor } from 'src/common/interceptors/circuit-breaker/circuit-breaker.interceptor';
 
+@UseInterceptors(CircuitBreakerInterceptor)
 @ApiTags('products')
 @Controller('products')
 export class ProductsController {
@@ -24,6 +28,8 @@ export class ProductsController {
   @Public()
   @Get()
   async findAll(@Query() paginationQuery: PaginationQueryDto) {
+    console.log('FindAll Executed');
+    throw new RequestTimeoutException('Error!');
     return this.productsService.findAll(paginationQuery);
   }
 

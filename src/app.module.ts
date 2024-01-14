@@ -6,6 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductRatingModule } from './product-rating/product-rating.module';
 import { ConfigModule } from '@nestjs/config';
 import { CommonModule } from './common/common.module';
+import { FibonacciModule } from './fibonacci/fibonacci.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { CommonModule } from './common/common.module';
     }),
     ProductRatingModule,
     CommonModule,
+    FibonacciModule,
   ],
   controllers: [AppController],
   providers: [AppService],
