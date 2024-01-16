@@ -7,7 +7,12 @@ import { ProductRatingModule } from './product-rating/product-rating.module';
 import { ConfigModule } from '@nestjs/config';
 import { CommonModule } from './common/common.module';
 import { FibonacciModule } from './fibonacci/fibonacci.module';
+import { DataSourceModule } from './data-source/data-source.module';
+import { UsersModule } from './users/users.module';
+import { ContextIdFactory } from '@nestjs/core';
+import { AggregateByTenantContextIdStrategy } from './core/aggregate-by-tenant.strategy';
 
+ContextIdFactory.apply(new AggregateByTenantContextIdStrategy());
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -28,6 +33,8 @@ import { FibonacciModule } from './fibonacci/fibonacci.module';
     ProductRatingModule,
     CommonModule,
     FibonacciModule,
+    DataSourceModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
