@@ -11,8 +11,11 @@ import { DataSourceModule } from './data-source/data-source.module';
 import { UsersModule } from './users/users.module';
 import { ContextIdFactory } from '@nestjs/core';
 import { AggregateByTenantContextIdStrategy } from './core/aggregate-by-tenant.strategy';
+import { I18nModule } from './i18n/i18n.module';
+import { AggregateByLocaleContextIdStrategy } from './core/aggregate-by-locale.strategy';
 
 ContextIdFactory.apply(new AggregateByTenantContextIdStrategy());
+ContextIdFactory.apply(new AggregateByLocaleContextIdStrategy());
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -35,6 +38,7 @@ ContextIdFactory.apply(new AggregateByTenantContextIdStrategy());
     FibonacciModule,
     DataSourceModule,
     UsersModule,
+    I18nModule,
   ],
   controllers: [AppController],
   providers: [AppService],
