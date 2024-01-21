@@ -13,6 +13,7 @@ import { ContextIdFactory } from '@nestjs/core';
 import { AggregateByTenantContextIdStrategy } from './core/aggregate-by-tenant.strategy';
 import { I18nModule } from './i18n/i18n.module';
 import { AggregateByLocaleContextIdStrategy } from './core/aggregate-by-locale.strategy';
+import { IamModule } from './iam/iam.module';
 
 ContextIdFactory.apply(new AggregateByTenantContextIdStrategy());
 ContextIdFactory.apply(new AggregateByLocaleContextIdStrategy());
@@ -39,6 +40,7 @@ ContextIdFactory.apply(new AggregateByLocaleContextIdStrategy());
     DataSourceModule,
     UsersModule,
     I18nModule,
+    IamModule,
   ],
   controllers: [AppController],
   providers: [AppService],
