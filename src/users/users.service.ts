@@ -5,9 +5,7 @@ import { DataSourceService } from 'src/data-source/data-source.service';
 
 @Injectable()
 export class UsersService {
-  constructor(private readonly dataSourceService: DataSourceService) {
-    console.log(this);
-  }
+  constructor(private readonly dataSourceService: DataSourceService) {}
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   create(createUserDto: CreateUserDto) {
     return 'This action adds a new user';
