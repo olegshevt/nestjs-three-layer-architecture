@@ -21,6 +21,8 @@ import { ApiKeysService } from './api-key/api-keys.service';
 import { ApiKey } from 'src/iam/api-key/entities/api-key.entity';
 import { ApiKeyGuard } from './api-key/guards/api-key/api-key.guard';
 import { ApiKeyModule } from './api-key/api-key.module';
+import { GoogleAuthenticationService } from './authentication/social/google-authentication.service';
+import { GoogleAuthenticationController } from './authentication/social/google-authentication.controller';
 
 @Module({
   imports: [
@@ -42,7 +44,8 @@ import { ApiKeyModule } from './api-key/api-key.module';
     FrameworkContributorPolicyHandler,
     ApiKeysService,
     ApiKeyGuard,
+    GoogleAuthenticationService,
   ],
-  controllers: [AuthenticationController],
+  controllers: [AuthenticationController, GoogleAuthenticationController],
 })
 export class IamModule {}

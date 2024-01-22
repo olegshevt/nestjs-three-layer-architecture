@@ -15,7 +15,7 @@ async function bootstrap() {
       },
     }),
   ); // whitelist removes properties that do not exist // forbidNonWhitelisted - returns error if non-existing property
-
+  app.enableCors();
   const options = new DocumentBuilder()
     .setTitle('Products Catalog')
     .setDescription('Products Catalog Application')
