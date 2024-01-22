@@ -23,8 +23,11 @@ import { Role } from 'src/users/enums/role.enum';
 // import { Permissions } from 'src/iam/authorization/decorators/permissions.decorator';
 import { FrameworkContributorPolicy } from 'src/iam/authorization/policies/framework-contributor.policy';
 import { Policies } from 'src/iam/authorization/decorators/policies.decorator';
+import { Auth } from 'src/iam/authentication/decorators/auth.decorator';
+import { AuthType } from 'src/iam/authentication/enums/auth-type.enum';
 
 @UseInterceptors(CircuitBreakerInterceptor)
+@Auth(AuthType.Bearer, AuthType.ApiKey)
 @ApiTags('products')
 @Controller('products')
 export class ProductsController {

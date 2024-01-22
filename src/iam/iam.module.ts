@@ -17,13 +17,17 @@ import { RefreshTokenIdsStorage } from './authentication/refresh-token-ids.stora
 import { PolicyHandlerStorage } from './authorization/policies/policy-handlers.storage';
 import { FrameworkContributorPolicyHandler } from './authorization/policies/framework-contributor.policy';
 import { PoliciesGuard } from './authorization/guards/policies.guard';
-import { ApiKeysService } from './authentication/api-keys.service';
+import { ApiKeysService } from './api-key/api-keys.service';
+import { ApiKey } from 'src/iam/api-key/entities/api-key.entity';
+import { ApiKeyGuard } from './api-key/guards/api-key/api-key.guard';
+import { ApiKeyModule } from './api-key/api-key.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([User]),
+    TypeOrmModule.forFeature([User, ApiKey]),
     JwtModule.registerAsync(jwtConfig.asProvider()),
     ConfigModule.forFeature(jwtConfig),
+    ApiKeyModule,
   ],
   providers: [
     { provide: HashingService, useClass: BcryptService },
@@ -37,6 +41,7 @@ import { ApiKeysService } from './authentication/api-keys.service';
     PolicyHandlerStorage,
     FrameworkContributorPolicyHandler,
     ApiKeysService,
+    ApiKeyGuard,
   ],
   controllers: [AuthenticationController],
 })

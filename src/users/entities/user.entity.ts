@@ -11,6 +11,7 @@ import {
   Permission,
   PermissionType,
 } from 'src/iam/authorization/permission.type';
+import { ApiKey } from '../../iam/api-key/entities/api-key.entity';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
@@ -24,6 +25,10 @@ export class User {
 
   @Column({ enum: Role, default: Role.Regular })
   role: Role;
+
+  @JoinTable()
+  @OneToMany((type) => ApiKey, (apiKey) => apiKey.user)
+  apiKeys: ApiKey[];
 
   //In production app should be a different Permissions table with many-to-many to Users.
   //Should not use the role and Permission the same time, just demonstration for Role-based and
